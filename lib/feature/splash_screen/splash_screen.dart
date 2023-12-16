@@ -1,6 +1,6 @@
 import 'package:animate_do/animate_do.dart';
+import 'package:bizkit/fade_transition/fade_transition.dart';
 import 'package:bizkit/feature/authentication/view/screens/login_screen.dart';
-import 'package:bizkit/feature/business_card_preview/view/screen/preview_main_screen.dart';
 import 'package:flutter/material.dart';
 
 class SplashScreen extends StatelessWidget {
@@ -23,28 +23,10 @@ class SplashScreen extends StatelessWidget {
 
   void _navigateToSignInPage(BuildContext context) {
     Future.delayed(const Duration(milliseconds: 2000), () {
-      Navigator.pushReplacement(context, route());
+      Navigator.pushReplacement(
+        context,
+        fadePageRoute(LoGInScreen()),
+      );
     });
-  }
-
-  Route route() {
-    return PageRouteBuilder(
-      transitionDuration: const Duration(milliseconds: 1500),
-      pageBuilder: (context, animation, secondaryAnimation) =>
-          const PreviewMainScreen(),
-      transitionsBuilder: (context, animation, secondaryAnimation, child) {
-        const begin = Offset(0.0, 1.0);
-        const end = Offset.zero;
-        const curve = Curves.easeInOut;
-        var tween = Tween(begin: begin, end: end).chain(
-          CurveTween(curve: curve),
-        );
-        var offsetAnimation = animation.drive(tween);
-        return SlideTransition(
-          position: offsetAnimation,
-          child: child,
-        );
-      },
-    );
   }
 }

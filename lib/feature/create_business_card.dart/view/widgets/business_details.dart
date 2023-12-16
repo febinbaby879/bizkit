@@ -1,5 +1,6 @@
 import 'package:bizkit/commen/widgets/textform_field.dart';
 import 'package:bizkit/core/const.dart';
+import 'package:bizkit/fade_transition/fade_transition_in_progressIndicator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -74,10 +75,14 @@ class BusinessDetails extends StatelessWidget {
               child: const Center(child: Text('Skip')),
             ),
             InkWell(
-              onTap: () => pageController.nextPage(
-                duration: const Duration(milliseconds: 500),
-                curve: Curves.ease,
-              ),
+              onTap: () {
+                Navigator.of(context)
+                    .push(createPageRoute())
+                    .then((_) => pageController.nextPage(
+                          duration: const Duration(milliseconds: 500),
+                          curve: Curves.ease,
+                        ));
+              },
               child: Container(
                 decoration: const BoxDecoration(
                   color: neonShade,

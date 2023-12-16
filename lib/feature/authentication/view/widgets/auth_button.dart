@@ -1,15 +1,16 @@
 import 'package:flutter/material.dart';
 
 class AuthButton extends StatelessWidget {
-  const AuthButton({super.key, required this.text, required this.onTap});
+  const AuthButton({super.key, required this.text, required this.onTap,this.wdth});
   final String text;
   final VoidCallback onTap;
+  final double? wdth;
   @override
   Widget build(BuildContext context) {
     return InkWell(
       onTap: onTap,
       child: Container(
-        width: 150,
+        width: wdth?? 150,
         height: 50,
         decoration: const BoxDecoration(
           borderRadius: BorderRadius.all(

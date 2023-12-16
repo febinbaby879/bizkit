@@ -1,5 +1,6 @@
 import 'package:bizkit/commen/widgets/textform_field.dart';
 import 'package:bizkit/core/const.dart';
+import 'package:bizkit/fade_transition/fade_transition.dart';
 import 'package:bizkit/feature/authentication/view/screens/signin_screen.dart';
 import 'package:bizkit/feature/authentication/view/widgets/auth_button.dart';
 import 'package:bizkit/feature/create_business_card.dart/view/screens/create_business_card.dart';
@@ -55,7 +56,8 @@ class LoGInScreen extends StatelessWidget {
               const Text('Don\'t have an acount?'),
               adjustHieght(khieght * .01),
               InkWell(
-                onTap: () => Navigator.push(context, _createRoute()),
+                onTap: () => Navigator.push(
+                    context, fadePageRoute(const SignInscreeen())),
                 child: const Text(
                   'Signup',
                   style: TextStyle(
@@ -68,9 +70,7 @@ class LoGInScreen extends StatelessWidget {
               AuthButton(
                 text: 'Login',
                 onTap: () => Navigator.of(context).push(
-                  MaterialPageRoute(
-                    builder: (context) => const StartingBusinessCardCreation(),
-                  ),
+                  fadePageRoute(const StartingBusinessCardCreation()),
                 ),
               ),
             ],
@@ -80,28 +80,5 @@ class LoGInScreen extends StatelessWidget {
     );
   }
 
-  Route _createRoute() {
-    return PageRouteBuilder(
-      pageBuilder: (context, animation, secondaryAnimation) =>
-          const SignInscreeen(),
-      transitionsBuilder: (context, animation, secondaryAnimation, child) {
-        const begin = 0.0;
-        const end = 1.0;
-        const curve = Curves.easeInOut;
-
-        final tween = Tween(begin: begin, end: end).chain(
-          CurveTween(curve: curve),
-        );
-
-        var opacityAnimation = animation.drive(tween);
-
-        return FadeTransition(
-          opacity: opacityAnimation,
-          child: child,
-        );
-      },
-      transitionDuration: const Duration(milliseconds: 800),
-      reverseTransitionDuration: const Duration(milliseconds: 800),
-    );
-  }
 }
+

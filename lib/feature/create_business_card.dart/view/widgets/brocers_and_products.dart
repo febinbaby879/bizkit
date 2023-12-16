@@ -92,7 +92,7 @@ class BrochersAndProducts extends StatelessWidget {
             InkWell(
               onTap: () => Navigator.of(context).push(
                 MaterialPageRoute(
-                  builder: (context) => const PreviewMainScreen(),
+                  builder: (context) => PreviewMainScreen(),
                 ),
               ),
               child: Container(

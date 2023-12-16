@@ -4,6 +4,7 @@ import 'package:bizkit/core/const.dart';
 import 'package:bizkit/feature/authentication/view/widgets/auth_button.dart';
 import 'package:flutter/material.dart';
 
+// ignore: must_be_immutable
 class IndividuelSignIn extends StatelessWidget {
   IndividuelSignIn({super.key});
 

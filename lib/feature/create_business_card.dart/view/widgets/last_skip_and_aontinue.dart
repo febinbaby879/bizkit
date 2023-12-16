@@ -25,9 +25,30 @@ class LastSkipContinueButtons extends StatelessWidget {
           child: const Center(child: Text('Skip')),
         ),
         InkWell(
-          onTap: () => Navigator.of(context).push(MaterialPageRoute(
-            builder: (context) => widget,
-          )),
+          onTap: () => Navigator.of(context).push(
+            PageRouteBuilder(
+              pageBuilder: (context, animation, secondaryAnimation) => widget,
+              transitionsBuilder:
+                  (context, animation, secondaryAnimation, child) {
+                const begin = 0.0;
+                const end = 1.0;
+                const curve = Curves.easeInOut;
+
+                final tween = Tween(begin: begin, end: end).chain(
+                  CurveTween(curve: curve),
+                );
+
+                var opacityAnimation = animation.drive(tween);
+
+                return FadeTransition(
+                  opacity: opacityAnimation,
+                  child: child,
+                );
+              },
+              transitionDuration: const Duration(milliseconds: 800),
+              reverseTransitionDuration: const Duration(milliseconds: 800),
+            ),
+          ),
           child: Container(
             decoration: const BoxDecoration(
               color: neonShade,

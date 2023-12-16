@@ -1,5 +1,6 @@
 import 'package:bizkit/commen/widgets/textform_field.dart';
 import 'package:bizkit/core/const.dart';
+import 'package:bizkit/fade_transition/fade_transition_in_progressIndicator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -25,7 +26,7 @@ class PersonlDetails extends StatelessWidget {
         adjustHieght(khieght * .02),
         TTextFormField(
           text: 'Home address',
-          controller: bloodGroup,
+          controller: homeAddress,
           inputType: TextInputType.name,
         ),
         TTextFormField(
@@ -35,17 +36,17 @@ class PersonlDetails extends StatelessWidget {
         ),
         TTextFormField(
           text: 'Birthday',
-          controller: bloodGroup,
+          controller: birthDaycontroller,
           inputType: TextInputType.name,
         ),
         TTextFormField(
           text: 'Accolades',
-          controller: bloodGroup,
+          controller: accoladesController,
           inputType: TextInputType.name,
         ),
         TTextFormField(
           text: 'Dates To Remember',
-          controller: bloodGroup,
+          controller: datesToReminderController,
           inputType: TextInputType.name,
         ),
         Container(
@@ -91,10 +92,14 @@ class PersonlDetails extends StatelessWidget {
               child: const Center(child: Text('Skip')),
             ),
             InkWell(
-              onTap: () => pageController.nextPage(
-                duration: const Duration(milliseconds: 500),
-                curve: Curves.ease,
-              ),
+              onTap: () {
+                Navigator.of(context)
+                    .push(createPageRoute())
+                    .then((_) => pageController.nextPage(
+                          duration: const Duration(milliseconds: 500),
+                          curve: Curves.ease,
+                        ));
+              },
               child: Container(
                 decoration: const BoxDecoration(
                   color: neonShade,

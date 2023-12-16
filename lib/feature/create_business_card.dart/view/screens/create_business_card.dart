@@ -1,4 +1,5 @@
 import 'package:bizkit/core/const.dart';
+import 'package:bizkit/fade_transition/fade_transition.dart';
 import 'package:bizkit/feature/create_business_card.dart/view/screens/manuel_entries/card_creation_first.dart';
 import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/material.dart';
@@ -13,7 +14,6 @@ class StartingBusinessCardCreation extends StatelessWidget {
       body: Center(
         child: Column(
           children: [
-            //adjustHieght(khieght * .2),
             SizedBox(
               height: khieght * .8,
               child: Column(
@@ -48,10 +48,9 @@ class StartingBusinessCardCreation extends StatelessWidget {
                     ),
                   ),
                   TextButton(
-                    onPressed: () =>
-                        Navigator.of(context).push(MaterialPageRoute(
-                      builder: (context) => ProfileScreen(),
-                    )),
+                    onPressed: () => Navigator.of(context).push(
+                      fadePageRoute(ProfileScreen()),
+                    ),
                     child: Text(
                       'Create Card manually',
                       style: TextStyle(
